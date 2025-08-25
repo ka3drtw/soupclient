@@ -1,0 +1,8 @@
+{
+    "font files": [
+        "text.ttf",
+        "icon.otf"
+    ],
+    "default": "DejaVu Sans",
+    "icon": "Font Awesome 6 Free Solid"
+}
