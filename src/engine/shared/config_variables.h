@@ -87,7 +87,6 @@ MACRO_CONFIG_INT(ClEyeDuration, cl_eye_duration, 999999, 1, 999999, CFGFLAG_CLIE
 MACRO_CONFIG_INT(ClFreezeStars, cl_freeze_stars, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show old star particles for frozen tees")
 
 //soup
-MACRO_CONFIG_INT(ClDiscordRPC, sc_discord_rpc, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Turn on Discord RPC")
 MACRO_CONFIG_INT(ClRecharFly, sc_rechar_fly, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Turn on rechar fly")
 MACRO_CONFIG_INT(ClGoresMode, sc_gores_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Always have a gun in your hand")
 MACRO_CONFIG_STR(ClGoresModeKey, sc_gores_mode_key, 255, "mouse1", CFGFLAG_CLIENT | CFGFLAG_SAVE, "The key it binds to")
