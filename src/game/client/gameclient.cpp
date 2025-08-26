@@ -498,6 +498,10 @@ void CGameClient::OnDummySwap()
 	int tmp = m_DummyInput.m_Fire;
 	m_DummyInput = m_Controls.m_aInputData[!g_Config.m_ClDummy];
 	m_Controls.m_aInputData[g_Config.m_ClDummy].m_Fire = tmp;
+	if(!g_Config.m_ClDummyRestoreWeapon)
+	{
+		m_Controls.m_aInputData[g_Config.m_ClDummy].m_WantedWeapon = WEAPON_HAMMER;
+	}
 	m_IsDummySwapping = 1;
 }
 
