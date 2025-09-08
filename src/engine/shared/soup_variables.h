@@ -51,7 +51,7 @@ MACRO_CONFIG_INT(ClShowSkinName, sc_skin_name, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG
 
 // MACRO_CONFIG_INT(ClFreeGhost, sc_freeghost, 0, 0, 1, CFGFLAG_CLIENT , "")
 
-MACRO_CONFIG_INT(ClFastInput, sc_fast_input, 0, 0, 5, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Uses input for prediction up to 20ms faster")
+MACRO_CONFIG_INT(ClFastInput, sc_fast_input, 0, 0, 2, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Uses input for prediction up to 20ms faster")
 MACRO_CONFIG_INT(ClFastInputOthers, sc_fast_input_others, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Do an extra 1 tick (20ms) for other tees with your fast inputs. (increases visual latency, makes dragging easier)")
 
 MACRO_CONFIG_INT(ClAntiPingImproved, sc_antiping_improved, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Different antiping smoothing algorithm, not compatible with cl_antiping_smooth")
