@@ -19,7 +19,7 @@ void CFreezeKill::OnRender()
     const CCharacterCore &Core = LocalClient.m_Predicted;
     const bool InTileFreeze = Core.m_IsInFreeze;
     const bool DeepOrLive = LocalClient.m_FreezeEnd > 0 || LocalClient.m_DeepFrozen || LocalClient.m_LiveFrozen;
-    const bool IsFrozen = g_Config.m_ClKillOnFreezeOnlyFull ? InTileFreeze : (InTileFreeze || DeepOrLive);
+    const bool IsFrozen = (InTileFreeze || DeepOrLive);
     if(!IsFrozen || LocalClient.m_Paused || LocalClient.m_Spec)
     {
         m_Sent = false;
