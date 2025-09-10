@@ -86,37 +86,12 @@ MACRO_CONFIG_INT(ClEyeWheel, cl_eye_wheel, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAV
 MACRO_CONFIG_INT(ClEyeDuration, cl_eye_duration, 999999, 1, 999999, CFGFLAG_CLIENT | CFGFLAG_SAVE, "How long the eyes emotes last")
 MACRO_CONFIG_INT(ClFreezeStars, cl_freeze_stars, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show old star particles for frozen tees")
 
-//soup
-MACRO_CONFIG_INT(ClRecharFly, sc_rechar_fly, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Turn on rechar fly")
-MACRO_CONFIG_INT(ClGoresMode, sc_gores_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Always have a gun in your hand")
-MACRO_CONFIG_STR(ClGoresModeKey, sc_gores_mode_key, 255, "mouse1", CFGFLAG_CLIENT | CFGFLAG_SAVE, "The key it binds to")
-MACRO_CONFIG_INT(ClGoresModeDisableIfWeapons, sc_gores_mode_disable_weapons, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Disable Gores Mode when the player has another weapon")
-MACRO_CONFIG_STR(ClGoresModeSaved, sc_gores_mode_saved, 128, "+fire", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dont Edit This")
-MACRO_CONFIG_INT(ClManualGoresMode, sc_manual_gores_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Manual Mode where you should yourself switch to pistol")
-
-
-MACRO_CONFIG_INT(ClMineTeeEditor, sc_mine_tee_editor, 0, 0, 1, CFGFLAG_CLIENT, "Send modify map packets to the server while brushing in the editor")
-
-MACRO_CONFIG_INT(ClRenderPic, sc_render_pic, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Render nice thumbnails of players if there are some")
-MACRO_CONFIG_INT(ClRenderPicWidth, sc_render_pic_width, 64, 2, 1024, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Size of player pics")
-MACRO_CONFIG_INT(ClRenderPicHeight, sc_render_pic_height, 64, 2, 1024, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Size of player pics")
-MACRO_CONFIG_INT(ClRenderPicAlpha, sc_render_pic_alpha, 100, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Alpha of player pics")
-
-
-MACRO_CONFIG_INT(ClBgDrawWidth, sc_bg_draw_width, 5, 1, 50, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Width of background draw strokes")
-MACRO_CONFIG_INT(ClBgDrawFadeTime, sc_bg_draw_fade_time, 120, 0, 600, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Time until strokes disappear (0 = never)")
-MACRO_CONFIG_INT(ClBgDrawMaxItems, sc_bg_draw_max_items, 128, 0, 2048, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Maximum number of strokes")
-MACRO_CONFIG_COL(ClBgDrawColor, sc_bg_draw_color, 14024576, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Color of background draw strokes")
-
-
 MACRO_CONFIG_INT(ClSpecCursor, cl_spec_cursor, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable the cursor of spectating player if available")
 
 MACRO_CONFIG_INT(ClAirjumpindicator, cl_airjumpindicator, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show the air jump indicator")
 MACRO_CONFIG_INT(ClThreadsoundloading, cl_threadsoundloading, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Load sound files threaded")
 
 MACRO_CONFIG_INT(ClWarningTeambalance, cl_warning_teambalance, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Warn about team balance")
-
-MACRO_CONFIG_INT(ClChinaFly, sc_china_fly, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "China Fly Mode")
 
 MACRO_CONFIG_INT(ClMouseDeadzone, cl_mouse_deadzone, 0, 0, 3000, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_INSENSITIVE, "Deadzone for the camera to follow the cursor")
 MACRO_CONFIG_INT(ClMouseFollowfactor, cl_mouse_followfactor, 0, 0, 200, CFGFLAG_CLIENT | CFGFLAG_SAVE | CFGFLAG_INSENSITIVE, "Factor for the camera to follow the cursor")
@@ -760,18 +735,7 @@ MACRO_CONFIG_INT(Gfx3DTextureAnalysisRan, gfx_3d_texture_analysis_ran, 0, 0, 1, 
 MACRO_CONFIG_STR(Gfx3DTextureAnalysisRenderer, gfx_3d_texture_analysis_renderer, 128, "", CFGFLAG_SAVE | CFGFLAG_CLIENT, "The renderer on which the analysis was performed")
 MACRO_CONFIG_STR(Gfx3DTextureAnalysisVersion, gfx_3d_texture_analysis_version, 128, "", CFGFLAG_SAVE | CFGFLAG_CLIENT, "The version on which the analysis was performed")
 
-// soup
 MACRO_CONFIG_INT(ClShowhudSpectatorCount, cl_showhud_spectator_count, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Show ingame HUD (Spectator Count)")
-MACRO_CONFIG_INT(ClPredictionGores, sc_gores_freeze_hit_prediction, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Cant hit in freeze gores prediction")
-
-#if defined(CONF_FAMILY_WINDOWS)
-MACRO_CONFIG_INT(ClAllowAnyRes, sc_allow_any_res, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Whether to allow any resolution in game when zoom is allowed (buggy on Windows)")
-#else
-MACRO_CONFIG_INT(ClAllowAnyRes, sc_allow_any_res, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Whether to allow any resolution in game when zoom is allowed (buggy on Windows)")
-#endif
-
-MACRO_CONFIG_INT(ClOldFreezeMode, sc_katana_in_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Katana in freeze")
-// soup
 
 MACRO_CONFIG_STR(GfxGpuName, gfx_gpu_name, 256, "auto", CFGFLAG_SAVE | CFGFLAG_CLIENT, "The GPU's name, which will be selected by the backend. (if supported by the backend)")
 #if defined(CONF_PLATFORM_ANDROID)
