@@ -2428,6 +2428,10 @@ if(CLIENT)
     components/soup/bindchat.h
     components/soup/bindwheel.cpp
     components/soup/bindwheel.h
+    components/soup/bg_draw.cpp
+    components/soup/bg_draw.h
+    components/soup/bg_draw_file.cpp
+    components/soup/bg_draw_file.h
     components/soup/menus_soup.cpp
     components/soup/outlines.cpp
     components/soup/outlines.h
