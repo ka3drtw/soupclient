@@ -84,6 +84,47 @@ MACRO_CONFIG_COL(ClOutlineColorKill, sc_outline_color_kill, 0, CFGFLAG_CLIENT | 
 MACRO_CONFIG_COL(ClOutlineColorUnfreeze, sc_outline_color_unfreeze, 0, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Unfreeze outline color") // 0 0 0
 MACRO_CONFIG_INT(ClOutlineKill, sc_outline_kill, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Draws outline around kill")
 
+// Kill On Freeze
+MACRO_CONFIG_INT(ClKillOnFreeze, sc_kill_on_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Automatically /kill when frozen")
+MACRO_CONFIG_INT(ClKillOnFreezeWaitMs, sc_kill_on_freeze_ms, 0, 0, 10000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Delay before killing when frozen (ms)")
+
+// Rechar Fly
+MACRO_CONFIG_INT(ClRecharFly, sc_rechar_fly, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Turn on rechar fly")
+
+// Gores Mode
+MACRO_CONFIG_INT(ClGoresMode, sc_gores_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Always have a gun in your hand")
+MACRO_CONFIG_STR(ClGoresModeKey, sc_gores_mode_key, 255, "mouse1", CFGFLAG_CLIENT | CFGFLAG_SAVE, "The key it binds to")
+MACRO_CONFIG_INT(ClGoresModeDisableIfWeapons, sc_gores_mode_disable_weapons, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Disable Gores Mode when the player has another weapon")
+MACRO_CONFIG_STR(ClGoresModeSaved, sc_gores_mode_saved, 128, "+fire", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dont Edit This")
+MACRO_CONFIG_INT(ClManualGoresMode, sc_manual_gores_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Manual Mode where you should yourself switch to pistol")
+
+// China Fly
+MACRO_CONFIG_INT(ClChinaFly, sc_china_fly, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "China Fly Mode")
+
+// Render Tee Pictures
+MACRO_CONFIG_INT(ClRenderPic, sc_render_pic, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Render nice thumbnails of players if there are some")
+MACRO_CONFIG_INT(ClRenderPicWidth, sc_render_pic_width, 64, 2, 1024, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Size of player pics")
+MACRO_CONFIG_INT(ClRenderPicHeight, sc_render_pic_height, 64, 2, 1024, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Size of player pics")
+MACRO_CONFIG_INT(ClRenderPicAlpha, sc_render_pic_alpha, 100, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Alpha of player pics")
+
+// Background Draw
+MACRO_CONFIG_INT(ClBgDrawWidth, sc_bg_draw_width, 5, 1, 50, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Width of background draw strokes")
+MACRO_CONFIG_INT(ClBgDrawFadeTime, sc_bg_draw_fade_time, 120, 0, 600, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Time until strokes disappear (0 = never)")
+MACRO_CONFIG_INT(ClBgDrawMaxItems, sc_bg_draw_max_items, 128, 0, 2048, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Maximum number of strokes")
+MACRO_CONFIG_COL(ClBgDrawColor, sc_bg_draw_color, 14024576, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Color of background draw strokes")
+
+// Predict gores
+MACRO_CONFIG_INT(ClPredictionGores, sc_gores_freeze_hit_prediction, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Cant hit in freeze gores prediction")
+
+#if defined(CONF_FAMILY_WINDOWS)
+MACRO_CONFIG_INT(ClAllowAnyRes, sc_allow_any_res, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Whether to allow any resolution in game when zoom is allowed (buggy on Windows)")
+#else
+MACRO_CONFIG_INT(ClAllowAnyRes, sc_allow_any_res, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Whether to allow any resolution in game when zoom is allowed (buggy on Windows)")
+#endif
+
+// Katana in freeze
+MACRO_CONFIG_INT(ClOldFreezeMode, sc_katana_in_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Katana in freeze")
+
 // Indicator Variables
 MACRO_CONFIG_COL(ClIndicatorAlive, sc_indicator_alive, 255, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Color of alive tees in player indicator")
 MACRO_CONFIG_COL(ClIndicatorFreeze, sc_indicator_freeze, 65407, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Color of frozen tees in player indicator")
