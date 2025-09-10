@@ -201,6 +201,7 @@ public:
 	CWarList m_WarList;
 	CPlayerPics m_PlayerPics;
 	CBgDraw m_BgDraw;
+	CFreezeKill m_FreezeKill;
 
 private:
 	std::vector<class CComponent *> m_vpAll;
