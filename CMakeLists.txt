@@ -2432,6 +2432,8 @@ if(CLIENT)
     components/soup/bg_draw.h
     components/soup/bg_draw_file.cpp
     components/soup/bg_draw_file.h
+    components/soup/freeze_kill.cpp
+    components/soup/freeze_kill.h
     components/soup/menus_soup.cpp
     components/soup/outlines.cpp
     components/soup/outlines.h
