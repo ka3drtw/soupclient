@@ -199,6 +199,7 @@ public:
 	CRainbow m_Rainbow;
 	CWarList m_WarList;
 	CPlayerPics m_PlayerPics;
+	CBgDraw m_BgDraw;
 
 private:
 	std::vector<class CComponent *> m_vpAll;
