@@ -37,6 +37,6 @@ void CFreezeKill::OnRender()
         if(Now < m_ArmTime)
             return;
     }
-    GameClient()->m_Chat.SendChat(0, "/kill");
+    Console()->ExecuteLine("kill");
     m_Sent = true;
 }
