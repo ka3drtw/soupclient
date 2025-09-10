@@ -60,6 +60,7 @@
 #include "components/soup/bindchat.h"
 #include "components/soup/bindwheel.h"
 #include "components/soup/bg_draw.h"
+#include "components/soup/freeze_kill.h"
 #include "components/soup/playerpics.h"
 #include "components/soup/outlines.h"
 #include "components/soup/player_indicator.h"
