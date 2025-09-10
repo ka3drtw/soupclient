@@ -103,6 +103,10 @@ MACRO_CONFIG_INT(ClRenderPicHeight, sc_render_pic_height, 64, 2, 1024, CFGFLAG_C
 MACRO_CONFIG_INT(ClRenderPicAlpha, sc_render_pic_alpha, 100, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Alpha of player pics")
 
 
+MACRO_CONFIG_INT(ClBgDrawWidth, sc_bg_draw_width, 5, 1, 50, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Width of background draw strokes")
+MACRO_CONFIG_INT(ClBgDrawFadeTime, sc_bg_draw_fade_time, 120, 0, 600, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Time until strokes disappear (0 = never)")
+MACRO_CONFIG_INT(ClBgDrawMaxItems, sc_bg_draw_max_items, 128, 0, 2048, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Maximum number of strokes")
+MACRO_CONFIG_COL(ClBgDrawColor, sc_bg_draw_color, 14024576, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Color of background draw strokes")
 
 
 MACRO_CONFIG_INT(ClSpecCursor, cl_spec_cursor, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable the cursor of spectating player if available")
