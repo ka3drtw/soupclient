@@ -122,7 +122,6 @@ bool CMenus::DoSliderWithScaledValue(const void *pId, int *pOption, const CUIRec
 
 	if(NoClampValue)
 	{
-		// clamp the value internally for the scrollbar
 		Value = clamp(Value, Min, Max);
 	}
 
@@ -252,7 +251,7 @@ void CMenus::RenderSettingsSoupClient(CUIRect MainView)
 			if(BindNew)
 			{
 				BindCommand = s_aBindCommandTemp;
-				BindNew = true; // Make a new bind, as we arent editing one
+				BindNew = true;
 			}
 			else
 			{
@@ -264,7 +263,7 @@ void CMenus::RenderSettingsSoupClient(CUIRect MainView)
 				if(BindNew && BindCommand[0] != '\0' && LineInput.IsActive())
 				{
 					GameClient()->m_Bindchat.AddBind(BindCommand, pCommand);
-					BindCommand[0] = '\0'; // Reset for new usage
+					BindCommand[0] = '\0';
 				}
 				if(!BindNew && BindCommand[0] == '\0')
 					GameClient()->m_Bindchat.RemoveBind(BindIndex);
@@ -303,8 +302,8 @@ void CMenus::RenderSettingsSoupClient(CUIRect MainView)
 			s_Warlist9, s_Warlist10, s_Warlist11, s_Warlist12;
 
 		char aBuf[128];
-		char aGroup1Name[MAX_WARLIST_TYPE_LENGTH]; // enemy by default
-		char aGroup2Name[MAX_WARLIST_TYPE_LENGTH]; // team by default
+		char aGroup1Name[MAX_WARLIST_TYPE_LENGTH];
+		char aGroup2Name[MAX_WARLIST_TYPE_LENGTH];
 		str_copy(aGroup1Name, GameClient()->m_WarList.m_WarTypes[1]->m_aWarName);
 		str_copy(aGroup2Name, GameClient()->m_WarList.m_WarTypes[2]->m_aWarName);
 		Column.HSplitTop(MarginSmall, nullptr, &Column);
@@ -349,7 +348,6 @@ void CMenus::RenderSettingsSoupClient(CUIRect MainView)
 
 		const float Radius = minimum(RightView.w, RightView.h) / 2.0f;
 		vec2 Pos{RightView.x + RightView.w / 2.0f, RightView.y + RightView.h / 2.0f};
-		// Draw Circle
 		Graphics()->TextureClear();
 		Graphics()->QuadsBegin();
 		Graphics()->SetColor(0.0f, 0.0f, 0.0f, 0.3f);
@@ -485,7 +483,7 @@ void CMenus::RenderSettingsSoupClient(CUIRect MainView)
 		LeftView.HSplitTop(LineSize, &Label, &LeftView);
 		Ui()->DoLabel(&Label, Localize("Use middle mouse select without copy"), FontSize, TEXTALIGN_ML);
 
-		// Do Settings Key
+		
 		CKeyInfo Key = CKeyInfo{"Bind Wheel Key", "+bindwheel", 0, 0};
 		for(int Mod = 0; Mod < CBinds::MODIFIER_COMBINATION_COUNT; Mod++)
 		{
@@ -557,14 +555,13 @@ void CMenus::RenderSettingsSoupClientSettngs(CUIRect MainView)
 
 	MainView.y += ScrollOffset.y;
 
-	MainView.VSplitRight(5.0f, &MainView, nullptr); // Padding for scrollbar
-	MainView.VSplitLeft(5.0f, nullptr, &MainView); // Padding for scrollbar
+	MainView.VSplitRight(5.0f, &MainView, nullptr);
+	MainView.VSplitLeft(5.0f, nullptr, &MainView);
 
 	MainView.VSplitMid(&LeftView, &RightView, MarginBetweenViews);
 	LeftView.VSplitLeft(MarginSmall, nullptr, &LeftView);
 	RightView.VSplitRight(MarginSmall, &RightView, nullptr);
 
-	// RightView.VSplitRight(10.0f, &RightView, nullptr);
 	for(CUIRect &Section : s_SectionBoxes)
 	{
 		float Padding = MarginBetweenViews * 0.6666f;
@@ -686,11 +683,10 @@ void CMenus::RenderSettingsSoupClientSettngs(CUIRect MainView)
 	Ui()->DoLabel(&Label, Localize("Input"), HeadlineFontSize, TEXTALIGN_ML);
 	Column.HSplitTop(MarginSmall, nullptr, &Column);
 
-	Column.HSplitTop(LineSize, &Button, &Column);
-	Ui()->DoScrollbarOption(&g_Config.m_ClFastInput, &g_Config.m_ClFastInput, &Button, Localize("Fast Inputs (-20ms visual delay)"), 0, 2, &CUi::ms_LinearScrollbarScale, 0, " ticks");
+	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClFastInput, Localize("Fast Inputs (-20ms visual delay)"), &g_Config.m_ClFastInput, &Column, LineSize);
 
 	Column.HSplitTop(MarginSmall, nullptr, &Column);
-	if(g_Config.m_ClFastInput > 0)
+	if(g_Config.m_ClFastInput)
 		DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClFastInputOthers, Localize("Extra tick other tees (increases other tees latency, \nmakes dragging slightly easier when using fast input)"), &g_Config.m_ClFastInputOthers, &Column, LineSize);
 	else
 		Column.HSplitTop(LineSize, nullptr, &Column);
@@ -997,7 +993,102 @@ void CMenus::RenderSettingsSoupClientSettngs(CUIRect MainView)
 		}
 	}
 	s_SectionBoxes.back().h = Column.y - s_SectionBoxes.back().y;
+	// ***** Background Draw ***** //
+	Column.HSplitTop(MarginBetweenSections, nullptr, &Column);
+	s_SectionBoxes.push_back(Column);
+	Column.HSplitTop(HeadlineHeight, &Label, &Column);
+	Ui()->DoLabel(&Label, Localize("Background Draw"), HeadlineFontSize, TEXTALIGN_ML);
+	Column.HSplitTop(MarginSmall, nullptr, &Column);
 
+	static CButtonContainer s_BgDrawColor;
+	DoLine_ColorPicker(&s_BgDrawColor, ColorPickerLineSize, ColorPickerLabelSize, ColorPickerLineSpacing, &Column, Localize("Color"), &g_Config.m_ClBgDrawColor, ColorRGBA(1.0f, 1.0f, 1.0f), false);
+
+	Column.HSplitTop(LineSize * 2.0f, &Button, &Column);
+	if(g_Config.m_ClBgDrawFadeTime == 0)
+		Ui()->DoScrollbarOption(&g_Config.m_ClBgDrawFadeTime, &g_Config.m_ClBgDrawFadeTime, &Button, Localize("Time until strokes disappear"), 0, 600, &CUi::ms_LinearScrollbarScale, CUi::SCROLLBAR_OPTION_MULTILINE, Localize(" seconds (never)"));
+	else
+		Ui()->DoScrollbarOption(&g_Config.m_ClBgDrawFadeTime, &g_Config.m_ClBgDrawFadeTime, &Button, Localize("Time until strokes disappear"), 0, 600, &CUi::ms_LinearScrollbarScale, CUi::SCROLLBAR_OPTION_MULTILINE, Localize(" seconds"));
+
+	Column.HSplitTop(LineSize * 2.0f, &Button, &Column);
+	Ui()->DoScrollbarOption(&g_Config.m_ClBgDrawWidth, &g_Config.m_ClBgDrawWidth, &Button, Localize("Width"), 1, 50, &CUi::ms_LinearScrollbarScale, CUi::SCROLLBAR_OPTION_MULTILINE);
+
+	{
+		Column.HSplitTop(MarginSmall, nullptr, &Column);
+		static CKeyInfo s_Key = CKeyInfo{Localize("Draw"), "+bg_draw", 0, 0};
+		s_Key.m_ModifierCombination = s_Key.m_KeyId = 0;
+		for(int Mod = 0; Mod < CBinds::MODIFIER_COMBINATION_COUNT; Mod++)
+		{
+			for(int KeyId = 0; KeyId < KEY_LAST; KeyId++)
+			{
+				const char *pBind = m_pClient->m_Binds.Get(KeyId, Mod);
+				if(!pBind[0])
+					continue;
+
+				if(str_comp(pBind, s_Key.m_pCommand) == 0)
+				{
+					s_Key.m_KeyId = KeyId;
+					s_Key.m_ModifierCombination = Mod;
+					break;
+				}
+			}
+		}
+
+		CUIRect KeyButton, KeyLabel;
+		Column.HSplitTop(LineSize, &KeyButton, &Column);
+		KeyButton.VSplitMid(&KeyLabel, &KeyButton);
+		char aBuf[64];
+		str_format(aBuf, sizeof(aBuf), "%s:", s_Key.m_pName);
+		Ui()->DoLabel(&KeyLabel, aBuf, 12.0f, TEXTALIGN_ML);
+		int OldId = s_Key.m_KeyId, OldModifierCombination = s_Key.m_ModifierCombination, NewModifierCombination;
+		int NewId = DoKeyReader(&s_Key, &KeyButton, OldId, OldModifierCombination, &NewModifierCombination);
+		if(NewId != OldId || NewModifierCombination != OldModifierCombination)
+		{
+			if(OldId != 0 || NewId == 0)
+				m_pClient->m_Binds.Bind(OldId, "", false, OldModifierCombination);
+			if(NewId != 0)
+				m_pClient->m_Binds.Bind(NewId, s_Key.m_pCommand, false, NewModifierCombination);
+		}
+
+		Column.HSplitTop(MarginSmall, nullptr, &Column);
+
+		static CKeyInfo s_KeyErase = CKeyInfo{Localize("Erase"), "+bg_draw_erase", 0, 0};
+		s_KeyErase.m_ModifierCombination = s_KeyErase.m_KeyId = 0;
+		for(int Mod = 0; Mod < CBinds::MODIFIER_COMBINATION_COUNT; Mod++)
+		{
+			for(int KeyId = 0; KeyId < KEY_LAST; KeyId++)
+			{
+				const char *pBind = m_pClient->m_Binds.Get(KeyId, Mod);
+				if(!pBind[0])
+					continue;
+
+				if(str_comp(pBind, s_KeyErase.m_pCommand) == 0)
+				{
+					s_KeyErase.m_KeyId = KeyId;
+					s_KeyErase.m_ModifierCombination = Mod;
+					break;
+				}
+			}
+		}
+
+		CUIRect KeyButton2, KeyLabel2;
+		Column.HSplitTop(LineSize, &KeyButton2, &Column);
+		KeyButton2.VSplitMid(&KeyLabel2, &KeyButton2);
+		char aBufErase[64];
+		str_format(aBufErase, sizeof(aBufErase), "%s:", s_KeyErase.m_pName);
+		Ui()->DoLabel(&KeyLabel2, aBufErase, 12.0f, TEXTALIGN_ML);
+		int OldId2 = s_KeyErase.m_KeyId, OldMod2 = s_KeyErase.m_ModifierCombination, NewMod2;
+		int NewId2 = DoKeyReader(&s_KeyErase, &KeyButton2, OldId2, OldMod2, &NewMod2);
+		if(NewId2 != OldId2 || NewMod2 != OldMod2)
+		{
+			if(OldId2 != 0 || NewId2 == 0)
+				m_pClient->m_Binds.Bind(OldId2, "", false, OldMod2);
+			if(NewId2 != 0)
+				m_pClient->m_Binds.Bind(NewId2, s_KeyErase.m_pCommand, false, NewMod2);
+		}
+
+		Column.HSplitTop(MarginExtraSmall, nullptr, &Column);
+	}
+	s_SectionBoxes.back().h = Column.y - s_SectionBoxes.back().y;
 	// ***** Tile Outlines ***** //
 	Column.HSplitTop(MarginBetweenSections, nullptr, &Column);
 	s_SectionBoxes.push_back(Column);
