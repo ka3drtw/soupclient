@@ -249,3 +249,10 @@ MACRO_CONFIG_INT(ClAutoReplyMuted, sc_auto_reply_muted, 0, 0, 1, CFGFLAG_CLIENT 
 MACRO_CONFIG_STR(ClAutoReplyMutedMessage, sc_auto_reply_muted_message, 128, "I have muted you", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Message to reply to muted players")
 MACRO_CONFIG_INT(ClAutoReplyMinimized, sc_auto_reply_minimized, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Auto reply when your game is minimized")
 MACRO_CONFIG_STR(ClAutoReplyMinimizedMessage, sc_auto_reply_minimized_message, 128, "I am not tabbed in", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Message to reply when your game is minimized")
+
+
+// Chat Prefixes
+MACRO_CONFIG_STR(ClClientPrefix, sc_client_prefix, 32, "— ", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Client message prefix")
+MACRO_CONFIG_STR(ClServerPrefix, sc_server_prefix, 32, "*** ", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Server message prefix")
+MACRO_CONFIG_STR(ClWarListTeamPrefix, sc_warlist_team_prefix, 32, "[TEAM] ", CFGFLAG_CLIENT | CFGFLAG_SAVE, "War list team prefix")
+MACRO_CONFIG_STR(ClWarListEnemyPrefix, sc_warlist_enemy_prefix, 32, "[ENEMY] ", CFGFLAG_CLIENT | CFGFLAG_SAVE, "War list enemy prefix")
