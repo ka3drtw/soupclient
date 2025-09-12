@@ -209,6 +209,13 @@ int CClient::SendMsgActive(CMsgPacker *pMsg, int Flags)
 	return SendMsg(g_Config.m_ClDummy, pMsg, Flags);
 }
 
+void CClient::SendSoupInfo(int Conn)
+{
+	CMsgPacker Msg(NETMSG_IAMSOUP, true);
+	Msg.AddString(SOUPCLIENT_VERSION " built on " __DATE__ ", " __TIME__);
+	SendMsg(Conn, &Msg, MSGFLAG_VITAL);
+}
+
 void CClient::SendInfo(int Conn)
 {
 
