@@ -3,7 +3,7 @@
 #ifndef GAME_VERSION_H
 #define GAME_VERSION_H
 #ifndef GAME_RELEASE_VERSION
-#define GAME_RELEASE_VERSION "2.5"
+#define GAME_RELEASE_VERSION "2.6"
 #endif
 
 // teeworlds
@@ -13,9 +13,9 @@
 #define GAME_NETVERSION7 "0.7 802f1be60a05665f"
 
 // ddnet
-#define DDNET_VERSION_NUMBER 19040
+#define DDNET_VERSION_NUMBER 19050
 extern const char *GIT_SHORTREV_HASH;
-#define GAME_NAME "DDNet"
+#define GAME_NAME "Soup Client"
 #define CLIENT_NAME "Soup Client"
-#define SOUPCLIENT_VERSION ""
+#define SOUPCLIENT_VERSION "2.6"
 #endif
