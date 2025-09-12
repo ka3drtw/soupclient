@@ -653,6 +653,48 @@ void CChat::StoreSave(const char *pText)
 	io_close(File);
 }
 
+const char *CChat::GetPrefix(int ClientId, bool IsServer, bool IsClient)
+{
+	if(IsServer)
+	{
+		if(g_Config.m_ClServerPrefix[0] == '\0')
+			return "";
+		return g_Config.m_ClServerPrefix;
+	}
+	
+	if(IsClient)
+		return g_Config.m_ClClientPrefix;
+	
+	if(ClientId >= 0 && ClientId < MAX_CLIENTS)
+	{
+		if(m_pClient->m_WarList.GetAnyWar(ClientId))
+		{
+			if(m_pClient->m_WarList.m_WarPlayers[ClientId].m_WarGroupMatches[2]) // team
+				return g_Config.m_ClWarListTeamPrefix;
+			else if(m_pClient->m_WarList.m_WarPlayers[ClientId].m_WarGroupMatches[1]) // enemy
+				return g_Config.m_ClWarListEnemyPrefix;
+		}
+	}
+	
+	return "";
+}
+
+bool CChat::ShouldShowPrefix(int ClientId, bool IsServer, bool IsClient)
+{
+	if(IsServer)
+		return true;
+	
+	if(IsClient)
+		return true;
+	
+	if(ClientId >= 0 && ClientId < MAX_CLIENTS)
+	{
+		return m_pClient->m_WarList.GetAnyWar(ClientId);
+	}
+	
+	return false;
+}
+
 void CChat::AddLine(int ClientId, int Team, const char *pLine)
 {
 	if(*pLine == 0 ||
@@ -804,12 +846,20 @@ void CChat::AddLine(int ClientId, int Team, const char *pLine)
 
 	if(pCurrentLine->m_ClientId == SERVER_MSG)
 	{
-		str_copy(pCurrentLine->m_aName, "*** ");
+		const char *pPrefix = GetPrefix(0, true, false);
+		if(pPrefix[0] != '\0')
+			str_format(pCurrentLine->m_aName, sizeof(pCurrentLine->m_aName), "%s", pPrefix);
+		else
+			str_copy(pCurrentLine->m_aName, "");
 		str_copy(pCurrentLine->m_aText, pLine);
 	}
 	else if(pCurrentLine->m_ClientId == CLIENT_MSG)
 	{
-		str_copy(pCurrentLine->m_aName, "— ");
+		const char *pPrefix = GetPrefix(0, false, true);
+		if(pPrefix[0] != '\0')
+			str_format(pCurrentLine->m_aName, sizeof(pCurrentLine->m_aName), "%s", pPrefix);
+		else
+			str_copy(pCurrentLine->m_aName, "");
 		str_copy(pCurrentLine->m_aText, pLine);
 	}
 	else
@@ -829,20 +879,34 @@ void CChat::AddLine(int ClientId, int Team, const char *pLine)
 
 		if(Team == TEAM_WHISPER_SEND)
 		{
-			str_format(pCurrentLine->m_aName, sizeof(pCurrentLine->m_aName), "→ %s", LineAuthor.m_aName);
+			const char *pPrefix = GetPrefix(pCurrentLine->m_ClientId, false, false);
+			if(pPrefix[0] != '\0')
+				str_format(pCurrentLine->m_aName, sizeof(pCurrentLine->m_aName), "→ %s%s", pPrefix, LineAuthor.m_aName);
+			else
+				str_format(pCurrentLine->m_aName, sizeof(pCurrentLine->m_aName), "→ %s", LineAuthor.m_aName);
 			pCurrentLine->m_NameColor = TEAM_BLUE;
 			pCurrentLine->m_Highlighted = false;
 			Highlighted = false;
 		}
 		else if(Team == TEAM_WHISPER_RECV)
 		{
-			str_format(pCurrentLine->m_aName, sizeof(pCurrentLine->m_aName), "← %s", LineAuthor.m_aName);
+			const char *pPrefix = GetPrefix(pCurrentLine->m_ClientId, false, false);
+			if(pPrefix[0] != '\0')
+				str_format(pCurrentLine->m_aName, sizeof(pCurrentLine->m_aName), "← %s%s", pPrefix, LineAuthor.m_aName);
+			else
+				str_format(pCurrentLine->m_aName, sizeof(pCurrentLine->m_aName), "← %s", LineAuthor.m_aName);
 			pCurrentLine->m_NameColor = TEAM_RED;
 			pCurrentLine->m_Highlighted = true;
 			Highlighted = true;
 		}
 		else
-			str_copy(pCurrentLine->m_aName, LineAuthor.m_aName);
+		{
+			const char *pPrefix = GetPrefix(pCurrentLine->m_ClientId, false, false);
+			if(pPrefix[0] != '\0')
+				str_format(pCurrentLine->m_aName, sizeof(pCurrentLine->m_aName), "%s%s", pPrefix, LineAuthor.m_aName);
+			else
+				str_copy(pCurrentLine->m_aName, LineAuthor.m_aName);
+		}
 
 		str_copy(pCurrentLine->m_aText, pLine);
 		pCurrentLine->m_Friend = LineAuthor.m_Friend;
