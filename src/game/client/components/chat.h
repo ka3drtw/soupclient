@@ -144,6 +144,10 @@ class CChat : public CComponent
 
 	bool LineShouldHighlight(const char *pLine, const char *pName);
 	void StoreSave(const char *pText);
+	
+	// Prefix functions
+	const char *GetPrefix(int ClientId, bool IsServer = false, bool IsClient = false);
+	bool ShouldShowPrefix(int ClientId, bool IsServer = false, bool IsClient = false);
 
 	friend class CBindchat;
 
