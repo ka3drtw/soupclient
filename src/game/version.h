@@ -15,7 +15,7 @@
 // ddnet
 #define DDNET_VERSION_NUMBER 19050
 extern const char *GIT_SHORTREV_HASH;
-#define GAME_NAME "Soup Client"
+#define GAME_NAME "DDNet"
 #define CLIENT_NAME "Soup Client"
 #define SOUPCLIENT_VERSION "2.6"
 #endif
