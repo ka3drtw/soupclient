@@ -2424,14 +2424,14 @@ if(CLIENT)
     components/skins7.h
     components/sounds.cpp
     components/sounds.h
-    components/soup/bindchat.cpp
-    components/soup/bindchat.h
-    components/soup/bindwheel.cpp
-    components/soup/bindwheel.h
     components/soup/bg_draw.cpp
     components/soup/bg_draw.h
     components/soup/bg_draw_file.cpp
     components/soup/bg_draw_file.h
+    components/soup/bindchat.cpp
+    components/soup/bindchat.h
+    components/soup/bindwheel.cpp
+    components/soup/bindwheel.h
     components/soup/freeze_kill.cpp
     components/soup/freeze_kill.h
     components/soup/menus_soup.cpp
@@ -2505,7 +2505,8 @@ if(CLIENT)
     ui_rect.h
     ui_scrollregion.cpp
     ui_scrollregion.h
-  )
+)
+
   set_src(GAME_EDITOR GLOB_RECURSE src/game/editor
     auto_map.cpp
     auto_map.h
