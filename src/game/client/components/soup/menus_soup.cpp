@@ -1056,6 +1056,44 @@ void CMenus::RenderSettingsSoupClientSettngs(CUIRect MainView)
 	}
 	Column.HSplitTop(MarginExtraSmall, nullptr, &Column);
 	s_SectionBoxes.back().h = Column.y - s_SectionBoxes.back().y;
+
+	// Chat Prefix
+	Column.HSplitTop(Margin, nullptr, &Column);
+	s_SectionBoxes.push_back(Column);
+	Column.HSplitTop(HeadlineHeight, &Label, &Column);
+	Ui()->DoLabel(&Label, Localize("Chat Prefixes"), HeadlineFontSize, TEXTALIGN_ML);
+	Column.HSplitTop(MarginSmall, nullptr, &Column);
+
+	static CLineInput s_ClientPrefix, s_ServerPrefix, s_WarListTeamPrefix, s_WarListEnemyPrefix;
+	
+	Column.HSplitTop(LineSize, &Button, &Column);
+	Button.VSplitLeft(120.0f, &Label, &Button);
+	Ui()->DoLabel(&Label, Localize("Client:"), FontSize, TEXTALIGN_ML);
+	s_ClientPrefix.SetBuffer(g_Config.m_ClClientPrefix, sizeof(g_Config.m_ClClientPrefix));
+	Ui()->DoEditBox(&s_ClientPrefix, &Button, EditBoxFontSize);
+
+	Column.HSplitTop(MarginSmall, nullptr, &Column);
+	Column.HSplitTop(LineSize, &Button, &Column);
+	Button.VSplitLeft(120.0f, &Label, &Button);
+	Ui()->DoLabel(&Label, Localize("Server:"), FontSize, TEXTALIGN_ML);
+	s_ServerPrefix.SetBuffer(g_Config.m_ClServerPrefix, sizeof(g_Config.m_ClServerPrefix));
+	Ui()->DoEditBox(&s_ServerPrefix, &Button, EditBoxFontSize);
+
+	Column.HSplitTop(MarginSmall, nullptr, &Column);
+	Column.HSplitTop(LineSize, &Button, &Column);
+	Button.VSplitLeft(120.0f, &Label, &Button);
+	Ui()->DoLabel(&Label, Localize("War Team:"), FontSize, TEXTALIGN_ML);
+	s_WarListTeamPrefix.SetBuffer(g_Config.m_ClWarListTeamPrefix, sizeof(g_Config.m_ClWarListTeamPrefix));
+	Ui()->DoEditBox(&s_WarListTeamPrefix, &Button, EditBoxFontSize);
+	
+	Column.HSplitTop(MarginSmall, nullptr, &Column);
+	Column.HSplitTop(LineSize, &Button, &Column);
+	Button.VSplitLeft(120.0f, &Label, &Button);
+	Ui()->DoLabel(&Label, Localize("War Enemy:"), FontSize, TEXTALIGN_ML);
+	s_WarListEnemyPrefix.SetBuffer(g_Config.m_ClWarListEnemyPrefix, sizeof(g_Config.m_ClWarListEnemyPrefix));
+	Ui()->DoEditBox(&s_WarListEnemyPrefix, &Button, EditBoxFontSize);
+    
+	s_SectionBoxes.back().h = Column.y - s_SectionBoxes.back().y;
 	// ***** Kill On Freeze ***** //
 	Column.HSplitTop(MarginBetweenSections, nullptr, &Column);
 	s_SectionBoxes.push_back(Column);
