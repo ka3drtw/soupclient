@@ -681,21 +681,13 @@ void CMenus::RenderSettingsSoupClientSettngs(CUIRect MainView)
 	s_SectionBoxes.push_back(Column);
 	Column.HSplitTop(HeadlineHeight, &Label, &Column);
 	Ui()->DoLabel(&Label, Localize("Input"), HeadlineFontSize, TEXTALIGN_ML);
-	Column.HSplitTop(MarginSmall, nullptr, &Column);
-
-	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClFastInput, Localize("Fast Inputs (-20ms visual delay)"), &g_Config.m_ClFastInput, &Column, LineSize);
-
-	Column.HSplitTop(MarginSmall, nullptr, &Column);
+	Column.HSplitTop(LineSize, &Button, &Column);
+	Ui()->DoScrollbarOption(&g_Config.m_ClFastInput, &g_Config.m_ClFastInput, &Button, Localize("Fast Inputs"), 0, 2);
 	if(g_Config.m_ClFastInput)
 		DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClFastInputOthers, Localize("Extra tick other tees (increases other tees latency, \nmakes dragging slightly easier when using fast input)"), &g_Config.m_ClFastInputOthers, &Column, LineSize);
 	else
 		Column.HSplitTop(LineSize, nullptr, &Column);
-	// A little extra spacing because these are multi line
-	Column.HSplitTop(MarginSmall, nullptr, &Column);
-
-	//
 	s_SectionBoxes.back().h = Column.y - s_SectionBoxes.back().y;
-
 
 	//GORESMODE/
 	Column.HSplitTop(MarginBetweenSections, nullptr, &Column);
@@ -1103,7 +1095,10 @@ void CMenus::RenderSettingsSoupClientSettngs(CUIRect MainView)
 	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClKillOnFreeze, Localize("Kill when you in freeze"), &g_Config.m_ClKillOnFreeze, &Column, LineSize);
 
 	Column.HSplitTop(LineSize, &Button, &Column);
-	Ui()->DoScrollbarOption(&g_Config.m_ClKillOnFreezeWaitMs, &g_Config.m_ClKillOnFreezeWaitMs, &Button, Localize("Wait before kill in ms"), 0, 10000);
+	if(g_Config.m_ClKillOnFreeze)
+	{
+		Ui()->DoScrollbarOption(&g_Config.m_ClKillOnFreezeWaitMs, &g_Config.m_ClKillOnFreezeWaitMs, &Button, Localize("Wait before kill in ms"), 0, 10000);
+	}
 	s_SectionBoxes.back().h = Column.y - s_SectionBoxes.back().y;
 	// ***** Frozen Tee Display ***** //
 	Column.HSplitTop(MarginBetweenSections, nullptr, &Column);
