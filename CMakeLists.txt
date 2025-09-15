@@ -4,6 +4,9 @@ set(CMAKE_OSX_DEPLOYMENT_TARGET 10.15 CACHE INTERNAL "Minimum macOS deployment v
 if(CMAKE_OSX_DEPLOYMENT_TARGET VERSION_LESS 10.15)
   message(WARNING "Building for macOS < 10.15 is not supported")
 endif()
+if(DEFINED GIT_SHORTREV_HASH)
+  add_compile_definitions(GIT_SHORTREV_HASH="${GIT_SHORTREV_HASH}")
+endif()
 
 file(STRINGS src/game/version.h VERSION_LINE
   LIMIT_COUNT 1
