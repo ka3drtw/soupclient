@@ -849,6 +849,11 @@ void CMenus::RenderSettingsSoupClientSettngs(CUIRect MainView)
 	Ui()->DoScrollbarOption(&g_Config.m_ClTeeTrailAlpha, &g_Config.m_ClTeeTrailAlpha, &Button, Localize("Trail alpha"), 0, 100);
 	static CButtonContainer s_TeeTrailColor;
 	DoLine_ColorPicker(&s_TeeTrailColor, ColorPickerLineSize, ColorPickerLabelSize, ColorPickerLineSpacing, &Column, Localize("Tee trail color"), &g_Config.m_ClTeeTrailColor, ColorRGBA(1.0f, 1.0f, 1.0f), false);
+	
+	ExtMenu.HSplitBottom(-371.0f, &ExtMenu, 0); // little space
+	ExtMenu.HSplitBottom(20.0f, &ExtMenu, &Button);
+	Column.HSplitTop(MarginExtraSmall, nullptr, &Column);
+	s_SectionBoxes.back().h = Column.y - s_SectionBoxes.back().y;
 	// ***** Auto Reply ***** //
 	Column.HSplitTop(MarginBetweenSections, nullptr, &Column);
 	s_SectionBoxes.push_back(Column);
