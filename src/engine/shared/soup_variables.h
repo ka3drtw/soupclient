@@ -88,18 +88,12 @@ MACRO_CONFIG_INT(ClOutlineKill, sc_outline_kill, 0, 0, 1, CFGFLAG_CLIENT | CFGFL
 MACRO_CONFIG_INT(ClKillOnFreeze, sc_kill_on_freeze, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Automatically /kill when frozen")
 MACRO_CONFIG_INT(ClKillOnFreezeWaitMs, sc_kill_on_freeze_ms, 0, 0, 10000, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Delay before killing when frozen (ms)")
 
-// Rechar Fly
-MACRO_CONFIG_INT(ClRecharFly, sc_rechar_fly, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Turn on rechar fly")
-
 // Gores Mode
 MACRO_CONFIG_INT(ClGoresMode, sc_gores_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Always have a gun in your hand")
 MACRO_CONFIG_STR(ClGoresModeKey, sc_gores_mode_key, 255, "mouse1", CFGFLAG_CLIENT | CFGFLAG_SAVE, "The key it binds to")
 MACRO_CONFIG_INT(ClGoresModeDisableIfWeapons, sc_gores_mode_disable_weapons, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Disable Gores Mode when the player has another weapon")
 MACRO_CONFIG_STR(ClGoresModeSaved, sc_gores_mode_saved, 128, "+fire", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Dont Edit This")
 MACRO_CONFIG_INT(ClManualGoresMode, sc_manual_gores_mode, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Manual Mode where you should yourself switch to pistol")
-
-// China Fly
-MACRO_CONFIG_INT(ClChinaFly, sc_china_fly, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "China Fly Mode")
 
 // Render Tee Pictures
 MACRO_CONFIG_INT(ClRenderPic, sc_render_pic, 0, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Render nice thumbnails of players if there are some")
