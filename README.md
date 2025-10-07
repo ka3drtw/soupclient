@@ -16,8 +16,6 @@ If requested, any features considered unfair or inappropriate will be removed im
 ### ⚙️ Features
 These are small QoL (quality-of-life) or input-assist features:
 
-- **China Fly** — Allows dummy move with copy dummy while using cl_dummy_hammer 1
-- **Rechar Fly** — Allows dummy to hook with copy dummy while using cl_dummy_hammer 1;
 - **Gores Mode** — Auto hammer when you LMB with pistol
 - **Render pics** — Renders player pictures, stored in `data/playerpics/`.
 - **Kill on Freeze** — Auto kill when you in freeze
